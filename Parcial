@@ -1,0 +1,40 @@
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        
+        double s_base = Double.parseDouble(camp_1.getText());
+        double d_labor = Double.parseDouble(camp_2.getText());
+        double horas_e = Double.parseDouble(camp_3.getText());
+        operar.cal_Salario(s_base,d_labor,horas_e);
+        devengado.setText(String.valueOf(operar.devengado));
+        deducido.setText(String.valueOf(operar.deducido));
+        total.setText(String.valueOf(operar.total));
+        
+    } 
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+
+
+public double s_mensual,devengado,horas_extras,
+                  deducido,salud,pension,prestamo,total;
+    
+    public void cal_Salario(double s_base, double d_labor, double horas_e){
+        
+        salud = s_base*0.04;
+        pension = s_base*0.04;
+        prestamo = s_base*0.01;
+        
+        s_mensual = (s_base/30)*d_labor;
+        
+        horas_extras = (((s_base/30)/8)*0.25)*horas_e;
+        
+        if (s_base<=2601212){
+            devengado = s_mensual+horas_extras+140606;
+        }else{
+            devengado = s_mensual+horas_extras;
+        }
+        
+        deducido = salud+pension+prestamo;
+        
+        total = devengado-deducido;
+    }
